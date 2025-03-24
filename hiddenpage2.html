@@ -5,44 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research Log - Strain Cipher</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #121212; color: #ddd; text-align: center; }
-        .log, .database, .input-section { margin: 20px auto; padding: 20px; width: 60%; background: #1e1e1e; border-radius: 10px; }
-        .hidden-text { color: #1e1e1e; cursor: pointer; }
-        .hidden-text:hover { color: #f39c12; }
-        button { padding: 10px; margin-top: 10px; cursor: pointer; }
-        #result { margin-top: 15px; font-size: 1.2em; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .log, .database, .input-section {
+            margin: 20px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .hidden-text {
+            color: #ddd;
+            cursor: pointer;
+        }
+        .hidden-text:hover {
+            color: #4CAF50;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
-    <h1>Research Log</h1>
-    <div class="log">
-        <p>Day 42: We've isolated key compounds from <span class="hidden-text" data-strain="Sunset Sherbet">█████ ██████</span> and <span class="hidden-text" data-strain="Blue Dream">████ █████</span>. The next step is...</p>
+    <header>
+        <h1>Research Log</h1>
+    </header>
+    <div class="container">
+        <div class="log">
+            <p>Day 42: We've isolated key compounds from <span class="hidden-text" data-strain="Crimson Kush">█████ ██████</span> and <span class="hidden-text" data-strain="Ruby Dream">████ █████</span>. The next step is... (Hint: The key is hidden in the first letters.)</p>
+        </div>
+        
+        <h2>Strain Database</h2>
+        <div class="database">
+            <p><strong>Crimson Kush:</strong> **C**atalytic **R**eaction, **I**ntense **M**odulation, **S**timulated **O**ptimization, **N**eutralization</p>
+            <p><strong>Ruby Dream:</strong> (This strain is a decoy with no relevant letters.)</p>
+        </div>
+        
+        <h2>Enter the Deciphered Code</h2>
+        <div class="input-section">
+            <input type="text" id="codeInput" placeholder="Enter passphrase...">
+            <button onclick="checkCode()">Submit</button>
+            <p id="result"></p>
+        </div>
     </div>
-    
-    <h2>Strain Database</h2>
-    <div class="database">
-        <p><strong>Sunset Sherbet:</strong> Sweet Undertones, Natural Synthesis, Experimental Trait</p>
-        <p><strong>Blue Dream:</strong> Balanced Lift, Lush Undertones, Enhanced Discovery</p>
-    </div>
-    
-    <h2>Enter the Deciphered Code</h2>
-    <div class="input-section">
-        <input type="text" id="codeInput" placeholder="Enter passphrase...">
-        <button onclick="checkCode()">Submit</button>
-        <p id="result"></p>
-    </div>
-    
+    <footer>
+        <p>&copy; 2023 GreenLeaf Farms. All rights reserved.</p>
+    </footer>
     <script>
         document.querySelectorAll('.hidden-text').forEach(el => {
             el.addEventListener('mouseover', () => {
-                el.style.color = '#f39c12';
+                el.style.color = '#4CAF50';
                 el.textContent = el.getAttribute('data-strain');
             });
         });
         
         function checkCode() {
             const input = document.getElementById("codeInput").value.toLowerCase();
-            if (input === "sublimed") { // First letters of each word in descriptions
+            if (input === "crimson") { // First letters of Crimson Kush's description spell "CRIMSON"
                 document.getElementById("result").innerHTML = "Correct! Proceed to <a href='/hiddenpage3.html'>the next phase</a>.";
             } else {
                 document.getElementById("result").innerHTML = "Incorrect. Keep trying!";
