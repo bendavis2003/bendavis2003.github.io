@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Log - Strain Cipher</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #121212; color: #ddd; text-align: center; }
+        .log, .database, .input-section { margin: 20px auto; padding: 20px; width: 60%; background: #1e1e1e; border-radius: 10px; }
+        .hidden-text { color: #1e1e1e; cursor: pointer; }
+        .hidden-text:hover { color: #f39c12; }
+        button { padding: 10px; margin-top: 10px; cursor: pointer; }
+        #result { margin-top: 15px; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <h1>Research Log</h1>
+    <div class="log">
+        <p>Day 42: We've isolated key compounds from <span class="hidden-text" data-strain="Sunset Sherbet">█████ ██████</span> and <span class="hidden-text" data-strain="Blue Dream">████ █████</span>. The next step is...</p>
+    </div>
+    
+    <h2>Strain Database</h2>
+    <div class="database">
+        <p><strong>Sunset Sherbet:</strong> Sweet Undertones, Natural Synthesis, Experimental Trait</p>
+        <p><strong>Blue Dream:</strong> Balanced Lift, Lush Undertones, Enhanced Discovery</p>
+    </div>
+    
+    <h2>Enter the Deciphered Code</h2>
+    <div class="input-section">
+        <input type="text" id="codeInput" placeholder="Enter passphrase...">
+        <button onclick="checkCode()">Submit</button>
+        <p id="result"></p>
+    </div>
+    
+    <script>
+        document.querySelectorAll('.hidden-text').forEach(el => {
+            el.addEventListener('mouseover', () => {
+                el.style.color = '#f39c12';
+                el.textContent = el.getAttribute('data-strain');
+            });
+        });
+        
+        function checkCode() {
+            const input = document.getElementById("codeInput").value.toLowerCase();
+            if (input === "sublimed") { // First letters of each word in descriptions
+                document.getElementById("result").innerHTML = "Correct! Proceed to <a href='/hiddenpage3.html'>the next phase</a>.";
+            } else {
+                document.getElementById("result").innerHTML = "Incorrect. Keep trying!";
+            }
+        }
+    </script>
+</body>
+</html>
