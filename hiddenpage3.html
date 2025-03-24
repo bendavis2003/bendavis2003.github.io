@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM INTRUSION DETECTED</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: black;
+            color: lime;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1));
+            overflow: hidden;
+        }
+        .glitch {
+            font-size: 48px;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: lime;
+            overflow: hidden;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 red;
+            animation: glitch-before 1s infinite;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: 2px 0 blue;
+            animation: glitch-after 1.5s infinite;
+        }
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+        @keyframes glitch-before {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            25% { clip-path: inset(20px 0 0 0); }
+            50% { clip-path: inset(0 0 20px 0); }
+            75% { clip-path: inset(0 0 0 20px); }
+        }
+        @keyframes glitch-after {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            25% { clip-path: inset(0 20px 0 0); }
+            50% { clip-path: inset(20px 0 0 0); }
+            75% { clip-path: inset(0 0 20px 0); }
+        }
+        .terminal {
+            font-size: 18px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            margin-top: 20px;
+            color: lime;
+            position: relative;
+            animation: flicker 0.1s infinite;
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: scan 5s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1),
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glitch" data-text="SYSTEM INTRUSION DETECTED">SYSTEM INTRUSION DETECTED</div>
+        <div class="terminal">
+            <div>[WARNING] UNAUTHORIZED ACCESS DETECTED...</div>
+            <div>[ALERT] DATA CORRUPTION IN STRAIN DATABASE...</div>
+            <div>[ERROR] CORE PROCESSES FAILING...</div>
+            <div>[INFO] ATTEMPTING TO RECONNECT...</div>
+            <div>[SECURITY] ENCRYPTION KEY COMPROMISED...</div>
+            <div>[SECURITY] INTRUDER IP: 192.168.1.1...</div>
+            <div>[ACTION] INITIATING SYSTEM REBOOT...</div>
+            <div>[WARNING] REBOOT FAILED - SYSTEM OVERLOAD...</div>
+            <div>[ALERT] TRACE IN PROGRESS...</div>
+            <div>[ERROR] CACHE FAILURE - RESET REQUIRED...</div>
+            <div>[INFO] SYSTEM RESTORED - TRACE COMPLETE...</div>
+        </div>
+        <div class="scanline"></div>
+        <div class="overlay"></div>
+    </div>
+</body>
+</html>
