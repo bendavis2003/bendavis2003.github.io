@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenleaf Farms Employee Handbook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #2c7a3e;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            border-bottom: 2px solid #2c7a3e;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .hidden-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .hidden-section input {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .hidden-section button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #2c7a3e;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .hidden-section button:hover {
+            background-color: #245d31;
+        }
+        .hidden-link {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #2c7a3e;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function unlockSection() {
+            const password = document.getElementById('password').value;
+            if (password === "terpenes") { // Password is hidden in the "Cultivation Protocols" section
+                document.getElementById('hidden-link').style.display = 'block';
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Greenleaf Farms Employee Handbook</h1>
+        <p>Welcome to Greenleaf Farms, where innovation meets cultivation! As a new hire, you are now part of a team dedicated to advancing the science and art of cannabis cultivation. This handbook will guide you through our policies, procedures, and expectations. Please read it carefully and refer to it as needed.</p>
+
+        <h2>1. Mission Statement</h2>
+        <p>At Greenleaf Farms, our mission is to cultivate the highest quality cannabis while pioneering research in sustainable agriculture and plant science. We strive to create a positive impact on our community, our industry, and the environment.</p>
+
+        <h2>2. Core Values</h2>
+        <ul>
+            <li><strong>Integrity:</strong> We operate with honesty and transparency in all our actions.</li>
+            <li><strong>Innovation:</strong> We embrace creativity and cutting-edge technology to drive progress.</li>
+            <li><strong>Sustainability:</strong> We are committed to environmentally responsible practices.</li>
+            <li><strong>Teamwork:</strong> We collaborate to achieve our shared goals.</li>
+            <li><strong>Quality:</strong> We deliver excellence in every product and service.</li>
+        </ul>
+
+        <h2>3. Employee Responsibilities</h2>
+        <p>As an employee of Greenleaf Farms, you are expected to:</p>
+        <ul>
+            <li>Adhere to all company policies and procedures.</li>
+            <li>Maintain a clean and safe work environment.</li>
+            <li>Respect the confidentiality of proprietary information.</li>
+            <li>Participate in ongoing training and professional development.</li>
+            <li>Report any safety concerns or violations to your supervisor immediately.</li>
+        </ul>
+
+        <h2>4. Workplace Safety</h2>
+        <p>Your safety is our top priority. All employees must:</p>
+        <ul>
+            <li>Wear appropriate personal protective equipment (PPE) at all times.</li>
+            <li>Follow all safety protocols and guidelines.</li>
+            <li>Attend mandatory safety training sessions.</li>
+            <li>Report accidents or near-misses to your supervisor immediately.</li>
+        </ul>
+
+        <h2>5. Cultivation Protocols</h2>
+        <p>Greenleaf Farms follows strict cultivation protocols to ensure the highest quality product. Key guidelines include:</p>
+        <ul>
+            <li>Maintain optimal environmental conditions (temperature, humidity, light).</li>
+            <li>Monitor plant health and report any signs of disease or pests.</li>
+            <li>Follow standard operating procedures (SOPs) for planting, harvesting, and processing.</li>
+            <li>Document all activities in the cultivation logbook.</li>
+            <li><strong>Remember:</strong> The key to unlocking the full potential of our plants lies in the <strong>terpenes</strong>.</li> <!-- Password hint -->
+        </ul>
+
+        <h2>6. Research and Development</h2>
+        <p>Our R&D team is at the forefront of cannabis science. Employees involved in research must:</p>
+        <ul>
+            <li>Follow all experimental protocols and document results accurately.</li>
+            <li>Collaborate with team members to share findings and insights.</li>
+            <li>Adhere to ethical guidelines and regulatory requirements.</li>
+        </ul>
+
+        <h2>7. Code of Conduct</h2>
+        <p>Greenleaf Farms expects all employees to conduct themselves professionally. Prohibited behaviors include:</p>
+        <ul>
+            <li>Harassment or discrimination of any kind.</li>
+            <li>Use of company resources for personal gain.</li>
+            <li>Violation of confidentiality agreements.</li>
+            <li>Possession or use of illegal substances on company property.</li>
+        </ul>
+
+        <h2>8. Benefits and Perks</h2>
+        <p>We value our employees and offer a range of benefits, including:</p>
+        <ul>
+            <li>Competitive salary and performance bonuses.</li>
+            <li>Health, dental, and vision insurance.</li>
+            <li>Paid time off and holidays.</li>
+            <li>Employee discounts on Greenleaf Farms products.</li>
+            <li>Opportunities for professional growth and advancement.</li>
+        </ul>
+
+        <h2>9. Contact Information</h2>
+        <p>If you have any questions or concerns, please contact:</p>
+        <ul>
+            <li><strong>HR Department:</strong> hr@greenleaffarms.com | Ext. 101</li>
+            <li><strong>Safety Officer:</strong> safety@greenleaffarms.com | Ext. 202</li>
+            <li><strong>IT Support:</strong> support@greenleaffarms.com | Ext. 303</li>
+        </ul>
+
+        <!-- Hidden Section -->
+        <div class="hidden-section">
+            <h2>Confidential Section</h2>
+            <p>Access to this section is restricted. Please enter the password to proceed.</p>
+            <input type="password" id="password" placeholder="Enter password">
+            <button onclick="unlockSection()">Unlock</button>
+            <div id="hidden-link" class="hidden-link">
+                <a href="/hiddenpage2.html">Access Confidential Information</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2023 Greenleaf Farms. All rights reserved.</p>
+            <p>Version 1.0</p>
+        </div>
+    </div>
+</body>
+</html>
