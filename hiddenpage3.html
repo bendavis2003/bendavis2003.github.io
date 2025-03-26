@@ -111,6 +111,74 @@
             );
             pointer-events: none;
         }
+        
+        /* Popup styles - UPDATED */
+        .alert-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            background-color: rgba(10, 0, 0, 0.9); /* Semi-transparent dark red */
+            border: 3px solid #f00;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            z-index: 1000;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            animation: pulse-alert 2s infinite;
+            display: none;
+        }
+        
+        @keyframes pulse-alert {
+            0%, 100% { border-color: #f00; box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); }
+            50% { border-color: #ff5555; box-shadow: 0 0 30px rgba(255, 85, 85, 0.9); }
+        }
+        
+        .alert-header {
+            color: #f00;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        .alert-body {
+            color: #0f0;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .alert-button {
+            background-color: #300;
+            color: white;
+            border: 1px solid #f00;
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            transition: all 0.3s;
+        }
+        
+        .alert-button:hover {
+            background-color: #f00;
+            box-shadow: 0 0 10px #f00;
+        }
+        
+        .popup-trigger {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,0,0,0.2);
+            color: #aaa;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            border: 1px dashed #f00;
+        }
     </style>
 </head>
 <body>
@@ -131,6 +199,89 @@
         </div>
         <div class="scanline"></div>
         <div class="overlay"></div>
+        
+        <!-- Hidden trigger (optional) -->
+        <div class="popup-trigger" onclick="showAlert()">SECURITY OVERRIDE</div>
     </div>
+
+    <!-- The alert popup -->
+    <div class="alert-popup" id="intrusionAlert">
+        <div class="alert-header">⚠️ CRITICAL SYSTEM ALERT ⚠️</div>
+        <div class="alert-body">
+            <p>EMERGENCY PROTOCOL INITIATED</p>
+            <p>SYSTEM INTEGRITY COMPROMISED: <span style="color:#f00">87%</span></p>
+            <p>DISTRIBUTED ATTACK REQUIRED TO COMPLETE BREACH</p>
+            <p style="text-align: center; margin: 20px 0; font-size: 24px; color: #0f0;">
+                EXECUTE: <span style="color:#f00; font-weight:bold;">!attackserver</span>
+            </p>
+            <p>IN PRIMARY COMMUNICATIONS CHANNEL</p>
+            <p>EACH AGENT INCREASES BREACH PROGRESS</p>
+        </div>
+        <button class="alert-button" onclick="window.open('https://discord.com/channels/your-server-id/1352815868186202163', '_blank')">
+            ACCESS COMMS CHANNEL
+        </button>
+    </div>
+
+    <script>
+        // Show popup after delay or when triggered
+        function showAlert() {
+            document.getElementById('intrusionAlert').style.display = 'block';
+        }
+        
+        // Auto-show after 30 seconds
+        setTimeout(showAlert, 30000);
+        
+        // Also show when user tries to leave
+        window.addEventListener('mouseout', (e) => {
+            if (e.clientY < 0) {
+                showAlert();
+            }
+        });
+        
+        // Make terminal text "type" slowly without showing HTML tags
+    const terminal = document.querySelector('.terminal');
+    const terminalLines = [
+        "[WARNING] UNAUTHORIZED ACCESS DETECTED...",
+        "[ALERT] DATA CORRUPTION IN STRAIN DATABASE...",
+        "[ERROR] CORE PROCESSES FAILING...",
+        "[INFO] ATTEMPTING TO RECONNECT...",
+        "[SECURITY] ENCRYPTION KEY COMPROMISED...",
+        "[SECURITY] INTRUDER IP: 192.168.1.1...",
+        "[ACTION] INITIATING SYSTEM REBOOT...",
+        "[WARNING] REBOOT FAILED - SYSTEM OVERLOAD...",
+        "[ALERT] TRACE IN PROGRESS...",
+        "[ERROR] CACHE FAILURE - RESET REQUIRED...",
+        "[INFO] SYSTEM RESTORED - TRACE COMPLETE..."
+    ];
+    
+    let currentLine = 0;
+    let currentChar = 0;
+    
+    function typeTerminal() {
+        if (currentLine < terminalLines.length) {
+            if (currentChar == 0) {
+                // Create new div for this line if it doesn't exist
+                if (terminal.children.length <= currentLine) {
+                    terminal.appendChild(document.createElement('div'));
+                }
+            }
+            
+            if (currentChar < terminalLines[currentLine].length) {
+                terminal.children[currentLine].textContent += terminalLines[currentLine].charAt(currentChar);
+                currentChar++;
+                setTimeout(typeTerminal, Math.random() * 50 + 20);
+            } else {
+                // Move to next line
+                currentLine++;
+                currentChar = 0;
+                setTimeout(typeTerminal, 500); // Pause between lines
+            }
+        }
+    }
+    
+    // Clear terminal and start typing
+    terminal.innerHTML = '';
+    typeTerminal();
+    </script>
 </body>
 </html>
