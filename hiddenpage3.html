@@ -112,7 +112,7 @@
             pointer-events: none;
         }
         
-        /* Popup styles - UPDATED */
+        /* Popup styles */
         .alert-popup {
             position: fixed;
             top: 50%;
@@ -120,7 +120,7 @@
             transform: translate(-50%, -50%);
             width: 80%;
             max-width: 600px;
-            background-color: rgba(10, 0, 0, 0.9); /* Semi-transparent dark red */
+            background-color: rgba(10, 0, 0, 0.95);
             border: 3px solid #f00;
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             z-index: 1000;
@@ -178,25 +178,28 @@
             font-size: 12px;
             cursor: pointer;
             border: 1px dashed #f00;
+            z-index: 1001;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: lime;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="glitch" data-text="SYSTEM INTRUSION DETECTED">SYSTEM INTRUSION DETECTED</div>
-        <div class="terminal">
-            <div>[WARNING] UNAUTHORIZED ACCESS DETECTED...</div>
-            <div>[ALERT] DATA CORRUPTION IN STRAIN DATABASE...</div>
-            <div>[ERROR] CORE PROCESSES FAILING...</div>
-            <div>[INFO] ATTEMPTING TO RECONNECT...</div>
-            <div>[SECURITY] ENCRYPTION KEY COMPROMISED...</div>
-            <div>[SECURITY] INTRUDER IP: 192.168.1.1...</div>
-            <div>[ACTION] INITIATING SYSTEM REBOOT...</div>
-            <div>[WARNING] REBOOT FAILED - SYSTEM OVERLOAD...</div>
-            <div>[ALERT] TRACE IN PROGRESS...</div>
-            <div>[ERROR] CACHE FAILURE - RESET REQUIRED...</div>
-            <div>[INFO] SYSTEM RESTORED - TRACE COMPLETE...</div>
-        </div>
+        <div class="terminal"></div>
         <div class="scanline"></div>
         <div class="overlay"></div>
         
@@ -217,7 +220,7 @@
             <p>IN PRIMARY COMMUNICATIONS CHANNEL</p>
             <p>EACH AGENT INCREASES BREACH PROGRESS</p>
         </div>
-        <button class="alert-button" onclick="window.open('https://discord.com/channels/your-server-id/1352815868186202163', '_blank')">
+        <button class="alert-button" onclick="window.open('https://discord.com/channels/945834555871473694/1352815868186202163', '_blank')">
             ACCESS COMMS CHANNEL
         </button>
     </div>
@@ -238,50 +241,71 @@
             }
         });
         
-        // Make terminal text "type" slowly without showing HTML tags
-    const terminal = document.querySelector('.terminal');
-    const terminalLines = [
-        "[WARNING] UNAUTHORIZED ACCESS DETECTED...",
-        "[ALERT] DATA CORRUPTION IN STRAIN DATABASE...",
-        "[ERROR] CORE PROCESSES FAILING...",
-        "[INFO] ATTEMPTING TO RECONNECT...",
-        "[SECURITY] ENCRYPTION KEY COMPROMISED...",
-        "[SECURITY] INTRUDER IP: 192.168.1.1...",
-        "[ACTION] INITIATING SYSTEM REBOOT...",
-        "[WARNING] REBOOT FAILED - SYSTEM OVERLOAD...",
-        "[ALERT] TRACE IN PROGRESS...",
-        "[ERROR] CACHE FAILURE - RESET REQUIRED...",
-        "[INFO] SYSTEM RESTORED - TRACE COMPLETE..."
-    ];
-    
-    let currentLine = 0;
-    let currentChar = 0;
-    
-    function typeTerminal() {
-        if (currentLine < terminalLines.length) {
-            if (currentChar == 0) {
-                // Create new div for this line if it doesn't exist
-                if (terminal.children.length <= currentLine) {
-                    terminal.appendChild(document.createElement('div'));
+        // Enhanced terminal typing effect
+        const terminal = document.querySelector('.terminal');
+        const terminalLines = [
+            "[WARNING] UNAUTHORIZED ACCESS DETECTED...",
+            "[ALERT] SERVER INTEGRITY AT 87%...",
+            "[ERROR] CORE PROCESSES FAILING...",
+            "[INFO] COORDINATED ATTACK REQUIRED...",
+            "[SECURITY] ENCRYPTION KEY COMPROMISED...",
+            "[SECURITY] INTRUDER IP: 192.168.1.1...",
+            "[ACTION] COMMAND INPUT: !a*******er...",
+            "[WARNING] REBOOT FAILED - SYSTEM OVERLOAD...",
+            "[ALERT] TRACE IN PROGRESS...",
+            "[ERROR] NEED MORE AGENTS TO COMPLETE BREACH...",
+            "[INFO] SYSTEM RESTORED - TRACE COMPLETE..."
+        ];
+        
+        let currentLine = 0;
+        let currentChar = 0;
+        let cursorVisible = true;
+        
+        function typeTerminal() {
+            if (currentLine < terminalLines.length) {
+                if (currentChar == 0) {
+                    // Create new div for this line if it doesn't exist
+                    if (terminal.children.length <= currentLine) {
+                        const lineDiv = document.createElement('div');
+                        terminal.appendChild(lineDiv);
+                    }
                 }
-            }
-            
-            if (currentChar < terminalLines[currentLine].length) {
-                terminal.children[currentLine].textContent += terminalLines[currentLine].charAt(currentChar);
-                currentChar++;
-                setTimeout(typeTerminal, Math.random() * 50 + 20);
+                
+                if (currentChar < terminalLines[currentLine].length) {
+                    // Add blinking cursor to current line
+                    const currentLineDiv = terminal.children[currentLine];
+                    currentLineDiv.innerHTML = 
+                        terminalLines[currentLine].substring(0, currentChar) + 
+                        '<span class="cursor"></span>';
+                    
+                    currentChar++;
+                    setTimeout(typeTerminal, Math.random() * 50 + 20);
+                } else {
+                    // Remove cursor from completed line
+                    terminal.children[currentLine].textContent = terminalLines[currentLine];
+                    
+                    // Move to next line
+                    currentLine++;
+                    currentChar = 0;
+                    setTimeout(typeTerminal, 500); // Pause between lines
+                }
             } else {
-                // Move to next line
-                currentLine++;
-                currentChar = 0;
-                setTimeout(typeTerminal, 500); // Pause between lines
+                // All lines completed - keep blinking cursor on last line
+                setInterval(() => {
+                    const lastLine = terminal.children[terminal.children.length - 1];
+                    cursorVisible = !cursorVisible;
+                    lastLine.innerHTML = terminalLines[terminalLines.length - 1] + 
+                        (cursorVisible ? '<span class="cursor"></span>' : '');
+                }, 500);
             }
         }
-    }
-    
-    // Clear terminal and start typing
-    terminal.innerHTML = '';
-    typeTerminal();
+        
+        // Start typing effect
+        typeTerminal();
+        
+        // Easter egg - console message
+        console.log("%c[SECURITY OVERRIDE] Command available: !attackserver", 
+                   "color: red; font-weight: bold; font-size: 14px;");
     </script>
 </body>
 </html>
